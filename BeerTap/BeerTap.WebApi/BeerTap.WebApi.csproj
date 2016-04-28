@@ -289,10 +289,13 @@
     </Compile>
     <Compile Include="Handlers\NullUserContext.cs" />
     <Compile Include="Handlers\PutYourApiSafeNameUserContextProvidingHandler.cs" />
+    <Compile Include="Hypermedia\ReplaceKegSpec.cs" />
+    <Compile Include="Hypermedia\TapSpec.cs" />
     <Compile Include="Hypermedia\KegSpec.cs" />
-    <Compile Include="Hypermedia\OfficeKegSpec.cs" />
+    <Compile Include="Hypermedia\TapStateProvider.cs" />
+    <Compile Include="Hypermedia\NewGlassSpec.cs" />
     <Compile Include="Hypermedia\OfficeSpec.cs" />
-    <Compile Include="Hypermedia\OfficeStateProvider.cs" />
+    <Compile Include="Infrastructure\AutoMapperConfig.cs" />
     <Compile Include="Infrastructure\BootStrapper.cs" />
     <Compile Include="Infrastructure\DefaultApiContainer.cs" />
     <Compile Include="Infrastructure\Installers\ResourceMapperInstaller.cs" />
@@ -330,8 +333,12 @@
     <Folder Include="Scripts\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BeerTap.Data\BeerTap.Data.csproj">
+      <Project>{a291ee23-555f-484d-a143-7b82f3c3cbcc}</Project>
+      <Name>BeerTap.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BeerTap.ApiServices\BeerTap.ApiServices.csproj">
-      <Project>{006BC5D6-E8BF-40C9-9C9C-A55685624E43}</Project>
+      <Project>{006bc5d6-e8bf-40c9-9c9c-a55685624e43}</Project>
       <Name>BeerTap.ApiServices</Name>
     </ProjectReference>
     <ProjectReference Include="..\BeerTap.Model\BeerTap.Model.csproj">

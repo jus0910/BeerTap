@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BeerTap.ApiServices;
 using BeerTap.Model;
 using IQ.Platform.Framework.WebApi.Hypermedia;
 using IQ.Platform.Framework.WebApi.Hypermedia.Specs;
@@ -8,7 +9,7 @@ namespace BeerTap.WebApi.Hypermedia
 {
     public class KegSpec : SingleStateResourceSpec<Keg, int>
     {
-        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("Kegs({id})");
+        public static ResourceUriTemplate Uri = ResourceUriTemplate.Create("Kegs({Id})");
 
         public override string EntrypointRelation
         {
@@ -17,7 +18,7 @@ namespace BeerTap.WebApi.Hypermedia
 
         protected override IEnumerable<ResourceLinkTemplate<Keg>> Links()
         {
-            yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, c => c.Id);
+            yield return CreateLinkTemplate(CommonLinkRelations.Self, Uri, o=>o.Id);
         }
 
         public override IResourceStateSpec<Keg, NullState, int> StateSpec
@@ -28,11 +29,10 @@ namespace BeerTap.WebApi.Hypermedia
                 {
                     Links =
                     {
-                        CreateLinkTemplate(EntrypointRelation, Uri, k => k.Id)
                     },
                     Operations = new StateSpecOperationsSource<Keg, int>()
                     {
-                        Get = ServiceOperations.Get,
+                        Get = ServiceOperations.Get
                     }
                 };
             }

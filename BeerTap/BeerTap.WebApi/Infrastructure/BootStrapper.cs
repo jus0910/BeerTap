@@ -50,7 +50,7 @@ namespace BeerTap.WebApi.Infrastructure
         static void InitializeDocumentationApplication(HttpConfiguration config, IApiContainer container)
         {
 
-            const string apiName = "BeerTap API documentation";
+            const string apiName = "Tap API documentation";
 
             // initialize help documentation module
             ApiDocumentationApplication.Initialize(

@@ -12,10 +12,11 @@
 
         public const string Keg = "iq:Keg";
 
-        public static class Offices
-        {
-            public const string GetTap = "iq:OfficeTap";
-            public const string ChangeTap = "iq:ChangeOfficeTap";
-        }
+        public const string BeerTap = "iq:Tap";
+
+        public const string ChangeKeg = "iq:ChangeKeg";
+
+        public const string Pour = "iq:Pour";
+        
     }
 }

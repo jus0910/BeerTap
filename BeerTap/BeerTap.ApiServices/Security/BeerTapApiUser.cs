@@ -26,7 +26,7 @@ namespace BeerTap.ApiServices.Security
 
         protected override BeerTapApiUser CreateUser(Option<UserAuthData> auth)
         {
-            return new BeerTapApiUser("BeerTap user", auth);
+            return new BeerTapApiUser("Tap user", auth);
         }
     }
 

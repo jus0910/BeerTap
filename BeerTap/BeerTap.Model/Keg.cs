@@ -25,5 +25,12 @@ namespace BeerTap.Model
         /// Metric Unit capacity of the keg in ml.
         /// </summary>
         public int MaxCapacity { get; set; }
+
+        public int MinCapacity { get; set; }
+
+        
+        //public int OfficeId { get; set; }
+
+        //public KegState KegState { get; set; }
     }
 }

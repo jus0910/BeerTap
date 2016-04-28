@@ -8,7 +8,7 @@ namespace BeerTap.Model
     /// <summary>
     /// A Sample Resource, used as a placeholder. To be removed after real-world API resources have been added.
     /// </summary>
-    public class Office : IIdentifiable<int>, IStatefulResource<OfficeState>, IStatefulOffice
+    public class Office : IIdentifiable<int>, IStatelessResource
     {
         /// <summary>
         /// Unique Identifier for the Office
@@ -20,6 +20,6 @@ namespace BeerTap.Model
         /// </summary>
         public string Name { get; set; }
 
-        public OfficeState OfficeState { get; set; }
+        //public List<Keg> Kegs { get; set; }
     }
 }

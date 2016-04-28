@@ -5,11 +5,14 @@
     /// </summary>
     public class LinksParametersSource
     {
-        public LinksParametersSource(int companyId)
+        public LinksParametersSource(int officeId, int beerTapId)
         {
-            CompanyId = companyId;
+            OfficeId = officeId;
+            BeerTapId = beerTapId;
         }
 
-        public int CompanyId { get; private set; }
+        public int OfficeId { get; private set; }
+
+        public int BeerTapId { get; set; }
     }
 }
