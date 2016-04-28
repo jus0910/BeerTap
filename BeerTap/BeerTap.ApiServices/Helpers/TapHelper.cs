@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BeerTap.Data;
 using BeerTap.Model;
 
@@ -41,18 +38,6 @@ namespace BeerTap.ApiServices.Helpers
             }
         }
 
-        private static KegState ChangeKegState(int volumeLeft, int kegMinimum, int kegMaximum)
-        {
-            var kegState = KegState.Dry;
-            if(volumeLeft >= kegMaximum)
-                kegState = KegState.New;
-            else if (volumeLeft < kegMaximum && volumeLeft > kegMinimum)
-                kegState = KegState.GoinDown;
-            else if(volumeLeft <= kegMinimum && volumeLeft > 0)
-                kegState = KegState.AlmostEmpty;
-            return kegState;
-        }
-
         public static void UpdateTapById(int id, int volume)
         {
             using (var db = new DataContext())
@@ -74,6 +59,18 @@ namespace BeerTap.ApiServices.Helpers
                 db.Entry(tap).State = EntityState.Modified;
                 db.SaveChanges();
             }
+        }
+
+        private static KegState ChangeKegState(int volumeLeft, int kegMinimum, int kegMaximum)
+        {
+            var kegState = KegState.Dry;
+            if (volumeLeft >= kegMaximum)
+                kegState = KegState.New;
+            else if (volumeLeft < kegMaximum && volumeLeft > kegMinimum)
+                kegState = KegState.GoinDown;
+            else if (volumeLeft <= kegMinimum && volumeLeft > 0)
+                kegState = KegState.AlmostEmpty;
+            return kegState;
         }
     }
 }

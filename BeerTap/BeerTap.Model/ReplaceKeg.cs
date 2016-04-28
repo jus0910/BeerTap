@@ -10,8 +10,14 @@ namespace BeerTap.Model
 {
     public class ReplaceKeg : IIdentifiable<int>, IStatelessResource
     {
+        /// <summary>
+        /// Identifier
+        /// </summary>
         public int Id { get; set; }
 
+        /// <summary>
+        /// Keg Id of the Keg to be used
+        /// </summary>
         public int KegId { get; set; }
     }
 }

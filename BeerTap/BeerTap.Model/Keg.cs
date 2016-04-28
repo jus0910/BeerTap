@@ -26,11 +26,9 @@ namespace BeerTap.Model
         /// </summary>
         public int MaxCapacity { get; set; }
 
+        /// <summary>
+        /// Almost Empty Trigger
+        /// </summary>
         public int MinCapacity { get; set; }
-
-        
-        //public int OfficeId { get; set; }
-
-        //public KegState KegState { get; set; }
     }
 }

@@ -19,7 +19,5 @@ namespace BeerTap.Model
         /// Name for the Office
         /// </summary>
         public string Name { get; set; }
-
-        //public List<Keg> Kegs { get; set; }
     }
 }

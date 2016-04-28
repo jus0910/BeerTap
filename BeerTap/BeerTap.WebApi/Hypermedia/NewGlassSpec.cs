@@ -32,9 +32,7 @@ namespace BeerTap.WebApi.Hypermedia
                 {
                     Links =
                     {
-                        //CreateLinkTemplate<LinksParametersSource>(EntrypointRelation, Uri.Many, o=>o.Parameters.OfficeId, o=>o.Parameters.BeerTapId),
                         CreateLinkTemplate<LinksParametersSource>(LinkRelations.BeerTap, TapSpec.Uri, o=>o.Parameters.OfficeId, o=>o.Parameters.BeerTapId),
-                        //CreateLinkTemplate<LinksParametersSource>(LinkRelations.Office, OfficeSpec.Uri, o=>o.Parameters.OfficeId),
                     },
                     Operations = new StateSpecOperationsSource<NewGlass, int>()
                     {
