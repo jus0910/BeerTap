@@ -12,6 +12,6 @@ namespace BeerTap.Model
     {
         public int Id { get; set; }
 
-        public int kegId { get; set; }
+        public int KegId { get; set; }
     }
 }

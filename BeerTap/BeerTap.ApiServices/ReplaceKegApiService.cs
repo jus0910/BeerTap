@@ -33,7 +33,7 @@ namespace BeerTap.ApiServices
             var tapId = context.UriParameters.GetByName<int>("TapId")
                 .EnsureValue(() => context.CreateHttpResponseException<Tap>("Tap Id must be supplied in the URL", HttpStatusCode.BadRequest));
             context.LinkParameters.Set(new LinksParametersSource(officeId, tapId));
-            TapHelper.ReplaceKeg(tapId, resource.kegId);
+            TapHelper.ReplaceKeg(tapId, resource.KegId);
 
             return Task.FromResult(new ResourceCreationResult<ReplaceKeg, int>(resource));
         }
