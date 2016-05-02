@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using BeerTap.Data;
@@ -39,31 +40,33 @@ namespace BeerTap.ApiServices.Helpers
             }
         }
 
-        public static bool UpdateTapById(int id, int officeId, int volume)
+        public static void UpdateTapById(int id, int officeId, int volume)
         {
             using (var db = new DataContext())
             {
                 var tap = db.Taps.FirstOrDefault(x => x.Id == id && x.OfficeId == officeId);
-                if (tap == null) return false;
+                if (tap == null)
+                    throw new Exception(string.Format("Tap Resource with Office Id {0} and Tap Id {1} not found", officeId, id));
                 tap.VolumeLeft -= volume;
                 db.Entry(tap).State = EntityState.Modified;
                 db.SaveChanges();
-                return true;
             }
         }
 
-        public static bool ReplaceKeg(int tapId, int officeId, int kegId)
+        public static void ReplaceKeg(int tapId, int officeId, int kegId)
         {
             using (var db = new DataContext())
             {
                 var tap = db.Taps.FirstOrDefault(x => x.Id == tapId && x.OfficeId == officeId);
                 var keg = KegHelper.GetById(kegId);
-                if (tap == null || keg == null) return false;
+                if (tap == null)
+                    throw new Exception(string.Format("Tap Resource with Office Id {0} and Tap Id {1} not found", officeId, tapId));
+                if (keg == null)
+                    throw new Exception(string.Format("Keg Resource with Id {0} not found", kegId));
                 tap.KegId = kegId;
                 tap.VolumeLeft = keg.MaxCapacity;
                 db.Entry(tap).State = EntityState.Modified;
                 db.SaveChanges();
-                return true;
             }
         }
 

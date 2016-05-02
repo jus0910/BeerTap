@@ -18,15 +18,21 @@ namespace BeerTap.ApiServices
     {
         public Task<ResourceCreationResult<NewGlass, int>> CreateAsync(NewGlass resource, IRequestContext context, CancellationToken cancellation)
         {
-            var officeId = context.UriParameters.GetByName<int>("OfficeId")
+            try
+            {
+                var officeId = context.UriParameters.GetByName<int>("OfficeId")
                 .EnsureValue(() => context.CreateHttpResponseException<Office>("Office Id must be supplied in the URL", HttpStatusCode.BadRequest));
-            var tapId = context.UriParameters.GetByName<int>("TapId")
-                .EnsureValue(() => context.CreateHttpResponseException<Tap>("Tap Id must be supplied in the URL", HttpStatusCode.BadRequest));
-            context.LinkParameters.Set(new LinksParametersSource(officeId, tapId));
+                var tapId = context.UriParameters.GetByName<int>("TapId")
+                    .EnsureValue(() => context.CreateHttpResponseException<Tap>("Tap Id must be supplied in the URL", HttpStatusCode.BadRequest));
+                context.LinkParameters.Set(new LinksParametersSource(officeId, tapId));
 
-            if(TapHelper.UpdateTapById(tapId, officeId, resource.Capacity))
+                TapHelper.UpdateTapById(tapId, officeId, resource.Capacity);
                 return Task.FromResult(new ResourceCreationResult<NewGlass, int>(resource));
-            throw new HttpException("Must supply valid Office and Tap IDs");
+            }
+            catch(Exception ex)
+            {
+                throw context.CreateHttpResponseException<NewGlass>(ex.Message, HttpStatusCode.BadRequest);
+            }
         }
     }
 }
