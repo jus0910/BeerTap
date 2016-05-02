@@ -8,11 +8,12 @@ namespace BeerTap.ApiServices.Helpers
 {
     public static class TapHelper
     {
-        public static Tap GetById(int id)
+        public static Tap GetById(int id, int officeId)
         {
             using (var db = new DataContext())
             {
-                var tap = db.Taps.FirstOrDefault(x => x.Id == id);
+                var tap = db.Taps.FirstOrDefault(x => x.Id == id && x.OfficeId == officeId);
+                if (tap == null) return null;
                 var result = AutoMapper.Mapper.Map<Tap>(tap);
                 result.Keg = KegHelper.GetById(tap.KegId);
                 result.KegState = ChangeKegState(result.VolumeLeft, result.Keg.MinCapacity, result.Keg.MaxCapacity);
@@ -38,26 +39,31 @@ namespace BeerTap.ApiServices.Helpers
             }
         }
 
-        public static void UpdateTapById(int id, int volume)
+        public static bool UpdateTapById(int id, int officeId, int volume)
         {
             using (var db = new DataContext())
             {
-                var tap = db.Taps.FirstOrDefault(x => x.Id == id);
+                var tap = db.Taps.FirstOrDefault(x => x.Id == id && x.OfficeId == officeId);
+                if (tap == null) return false;
                 tap.VolumeLeft -= volume;
                 db.Entry(tap).State = EntityState.Modified;
                 db.SaveChanges();
+                return true;
             }
         }
 
-        public static void ReplaceKeg(int tapId, int kegId)
+        public static bool ReplaceKeg(int tapId, int officeId, int kegId)
         {
             using (var db = new DataContext())
             {
-                var tap = db.Taps.FirstOrDefault(x => x.Id == tapId);
+                var tap = db.Taps.FirstOrDefault(x => x.Id == tapId && x.OfficeId == officeId);
+                var keg = KegHelper.GetById(kegId);
+                if (tap == null || keg == null) return false;
                 tap.KegId = kegId;
-                tap.VolumeLeft = KegHelper.GetById(kegId).MaxCapacity;
+                tap.VolumeLeft = keg.MaxCapacity;
                 db.Entry(tap).State = EntityState.Modified;
                 db.SaveChanges();
+                return true;
             }
         }
 

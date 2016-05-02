@@ -35,7 +35,9 @@ namespace BeerTap.ApiServices
 
         public Task<Tap> GetAsync(int id, IRequestContext context, CancellationToken cancellation)
         {
-            var tap = TapHelper.GetById(id);
+            var officeId = context.UriParameters.GetByName<int>("OfficeId")
+                .EnsureValue(() => context.CreateHttpResponseException<Office>("Office Id must be supplied in the URL", HttpStatusCode.BadRequest));
+            var tap = TapHelper.GetById(id, officeId);
             return Task.FromResult(tap);
         }
     }

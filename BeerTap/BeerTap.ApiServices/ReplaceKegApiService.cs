@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using BeerTap.ApiServices.Helpers;
 using BeerTap.ApiServices.Security;
 using BeerTap.Model;
@@ -33,9 +34,10 @@ namespace BeerTap.ApiServices
             var tapId = context.UriParameters.GetByName<int>("TapId")
                 .EnsureValue(() => context.CreateHttpResponseException<Tap>("Tap Id must be supplied in the URL", HttpStatusCode.BadRequest));
             context.LinkParameters.Set(new LinksParametersSource(officeId, tapId));
-            TapHelper.ReplaceKeg(tapId, resource.KegId);
 
-            return Task.FromResult(new ResourceCreationResult<ReplaceKeg, int>(resource));
+            if(TapHelper.ReplaceKeg(tapId, officeId, resource.KegId))
+                return Task.FromResult(new ResourceCreationResult<ReplaceKeg, int>(resource));
+            throw new HttpException(403, "Must Supply valid Office, Tap and Keg IDs");
         }
     }
 }

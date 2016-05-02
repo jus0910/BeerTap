@@ -27,9 +27,6 @@ namespace BeerTap.WebApi.Hypermedia
             {
                 return new SingleStateSpec<Keg, int>()
                 {
-                    Links =
-                    {
-                    },
                     Operations = new StateSpecOperationsSource<Keg, int>()
                     {
                         Get = ServiceOperations.Get
