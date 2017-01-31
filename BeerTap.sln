@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerTap.IntegrationTests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerTap.Data", "BeerTap.Data\BeerTap.Data.csproj", "{A291EE23-555F-484D-A143-7B82F3C3CBCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BeerTap.Common", "BeerTap.Common\BeerTap.Common.csproj", "{E00EA4CB-BB54-4A43-B0A4-14BB4F8CFEA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{A291EE23-555F-484D-A143-7B82F3C3CBCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A291EE23-555F-484D-A143-7B82F3C3CBCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A291EE23-555F-484D-A143-7B82F3C3CBCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E00EA4CB-BB54-4A43-B0A4-14BB4F8CFEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E00EA4CB-BB54-4A43-B0A4-14BB4F8CFEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E00EA4CB-BB54-4A43-B0A4-14BB4F8CFEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E00EA4CB-BB54-4A43-B0A4-14BB4F8CFEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
